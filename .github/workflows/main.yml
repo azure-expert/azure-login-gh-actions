@@ -21,6 +21,5 @@ jobs:
 
     - name: Create Virtual Machine
       run: |
-        #az vm delete -g maria -n MyVm --yes
         az vm create -n mytest -g maria --image UbuntuLTS
         az vm list
