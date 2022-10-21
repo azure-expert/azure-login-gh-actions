@@ -13,13 +13,13 @@ jobs:
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
   
-    #- name: 'Run Azure CLI commands'
-    #  run: |
-    #   az network vnet delete -g maria -n MyVnet1
-    #   az group list
+    - name: 'Run Azure CLI commands'
+      run: |
+       az network vnet delete -g maria -n MyVnet1
+       az group list
 
     - name: Create Virtual Machine
       run: |
-        az vm delete -g maria -n MyVm --yes
+        #az vm delete -g maria -n MyVm --yes
         #az vm delete -n MyVm -g maria --generate-ssh-keys --image UbuntuLTS --yes
-        az vm list
+        #az vm list
