@@ -15,6 +15,6 @@ jobs:
   
     - name: 'Run Azure CLI commands'
       run: |
-          az group create -n azureteste2 -l brazilsouth
+          az network vnet create -g maria -n MyVnet1
           az group list
           pwd
