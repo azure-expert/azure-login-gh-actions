@@ -15,5 +15,6 @@ jobs:
   
     - name: 'Run Azure CLI commands'
       run: |
+          az group create -n azureteste -l brazilsouth
           az group list
           pwd
