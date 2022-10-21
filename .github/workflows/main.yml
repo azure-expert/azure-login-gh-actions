@@ -21,5 +21,5 @@ jobs:
 
     - name: Create Virtual Machine
       run: |
-        az vm delete -n mytest -g maria --image UbuntuLTS --generate-ssh-keys --yes
+        az vm delete -n mytest -g maria --image UbuntuLTS --yes
         az vm list
