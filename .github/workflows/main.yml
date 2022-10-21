@@ -15,10 +15,10 @@ jobs:
   
     - name: 'Run Azure CLI commands'
       run: |
-        az network vnet create -g maria -n MyVnet1
+        az network vnet delete -g maria -n MyVnet1
         az group list
 
     - name: Create Virtual Machine
       run: |
-        az vm create -n MyVm -g maria --image UbuntuLTS
+        az vm create -n MyVm -g maria --generate-ssh-keys --image UbuntuLTS
         az vm list
