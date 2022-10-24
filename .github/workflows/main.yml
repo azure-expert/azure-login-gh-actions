@@ -2,8 +2,6 @@
 name: Run Azure Login with OpenID Connect
 on: [push]
 
-permissions: write-all
-      
 jobs: 
   build-and-deploy:
     permissions: write-all
@@ -16,10 +14,5 @@ jobs:
   
     - name: 'Check Azure CLI commands'
       run: |
-       az network vnet delete -g maria -n MyVnet1 
+       az network vnet create -g maria -n MyVnet1 
        az group list
-
-    #- name: Create Virtual Machine
-     # run: |
-      #  az vm delete -n mytest -g maria --image UbuntuLTS --yes
-      #  az vm list

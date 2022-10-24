@@ -1,13 +1,40 @@
-## O que é CI/CD?
-CI/CD, continuous integration/continuous delivery, é um método para entregar aplicações com frequência aos clientes. Para isso, é aplicada a automação nas etapas do desenvolvimento de aplicações. Os principais conceitos atribuídos a esse método são a integração, entrega e implantação contínuas. Com o CI/CD, é possível solucionar os problemas que a integração de novos códigos pode causar para as equipes de operações e desenvolvimento (o famoso "inferno de integração").
+## Use the Azure login action with a service principal secret
+To use Azure login with a service principal, you first need to add your Azure service principal as a secret to your GitHub repository.
 
-Especificamente, o CI/CD aplica monitoramento e automação contínuos em todo o ciclo de vida das aplicações, incluindo as etapas de teste e integração, além da entrega e implantação. Juntas, essas práticas relacionadas são muitas vezes chamadas de "pipeline de CI/CD" e são compatíveis com o trabalho conjunto das equipes de operações e desenvolvimento com métodos ágeis.
+### In this example, you will create a secret named AZURE_CREDENTIALS that you can use to authenticate with Azure.
 
-## Qual é a diferença entre CI e CD (e o outro CD)?
-O acrônimo CI/CD tem alguns significados. "CI" sempre se refere à integração contínua, que é um processo de automação para desenvolvedores. Uma CI bem-sucedida é quando novas mudanças no código de uma aplicação são desenvolvidas, testadas e consolidadas regularmente em um repositório compartilhado. É a solução ideal para evitar conflitos entre ramificações quando muitas aplicações são desenvolvidas ao mesmo tempo.
+1- Open Azure Cloud Shell in the Azure portal or Azure CLI locally.
+`$ az login`
 
-"CD" se refere à entrega contínua e/ou à implantação contínua, conceitos relacionados e usados alternadamente às vezes. Em ambos os casos, se trata da automação de fases avançadas do pipeline, mas são usados às vezes separadamente para ilustrar o nível de automação presente.
+2- Before to proceed with others commands, please make sure you have the following:
 
-Geralmente, a entrega contínua representa as mudanças feitas pelo desenvolvedor em uma aplicação, que são automaticamente testadas contra bugs e carregadas em um repositório, como o GitHub, ou em um registro de container. Nesse repositório, a equipe de operações pode implantar essas mudanças em um ambiente de produção ativo. Isso resolve o problema de baixa visibilidade e comunicação entre as equipes de negócios e desenvolvimento. Para isso, a finalidade da entrega contínua é garantir o mínimo de esforço na implantação de novos códigos.
+` az group create -n maria -l brazilsouth`
 
-A implantação contínua, outro significado para "CD", se refere ao lançamento automático das mudanças feitas por um desenvolvedor do repositório à produção, onde podem ser usadas pelos clientes. Isso evita a sobrecarga das equipes de operações por conta dos processos manuais que atrasam a entrega de aplicações. Nesse conceito, são aproveitados os benefícios da entrega contínua ao automatizar a próxima etapa no pipeline.
+3- Create a new service principal in the Azure portal for your app. The service principal must be assigned the Contributor role.
+
+```bash
+az ad sp create-for-rbac --name "myApp" --role contributor \
+                                --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group} \
+                                --sdk-auth
+```
+
+
+4- Copy all the JSON object for your service principal.
+
+```bash
+{
+    "clientId": "<GUID>",
+    "clientSecret": "<GUID>",
+    "subscriptionId": "<GUID>",
+    "tenantId": "<GUID>",
+    (...)
+}
+```
+
+5- Open your GitHub repository and go to Settings and add on the Secrets session the `AZURE_CREDENTIALS`.
+
+6- Paste in your JSON object for your service principal with the name `AZURE_CREDENTIALS`
+
+
+
+
