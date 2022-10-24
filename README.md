@@ -37,6 +37,32 @@ az ad sp create-for-rbac --name "myApp" --role contributor \
 
 6- Paste in your JSON object for your service principal with the name `AZURE_CREDENTIALS`
 
+## The Action to be used
+
+```yml
+on: [push]
+
+name: AzureLoginSample
+
+jobs:
+build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Log in with Azure
+        uses: azure/login@v1
+        with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Azure CLI script
+        uses: azure/CLI@v1
+        with:
+        azcliversion: 2.0.72
+        inlineScript: |
+            az account show
+            az storage -h
+```
+
 ## References
 [Authenticate  from Azure to Actions](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Clinux)
 
