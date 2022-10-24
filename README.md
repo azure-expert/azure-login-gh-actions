@@ -1,3 +1,5 @@
+[![Run Azure Login with OpenID Connect](https://github.com/azure-expert/azure-login-gh-actions/actions/workflows/main.yml/badge.svg)](https://github.com/azure-expert/azure-login-gh-actions/actions/workflows/main.yml)
+
 ## Use the Azure login action with a service principal secret
 To use Azure login with a service principal, you first need to add your Azure service principal as a secret to your GitHub repository.
 
@@ -35,6 +37,15 @@ az ad sp create-for-rbac --name "myApp" --role contributor \
 
 6- Paste in your JSON object for your service principal with the name `AZURE_CREDENTIALS`
 
+## References
+[Authenticate  from Azure to Actions](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Clinux)
 
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
 
